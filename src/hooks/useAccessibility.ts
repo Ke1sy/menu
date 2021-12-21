@@ -307,10 +307,14 @@ export default function useAccessibility<T extends HTMLElement>(
 
         // Get next focus element
         let targetElement;
+        const focusableElements = getFocusableElements(
+          parentQueryContainer,
+          elements,
+        );
         if (which === HOME) {
-          targetElement = [...elements][0];
+          targetElement = focusableElements[0];
         } else if (which === END) {
-          targetElement = [...elements][elements.size - 1];
+          targetElement = focusableElements[focusableElements.length - 1];
         } else {
           targetElement = getNextFocusElement(
             parentQueryContainer,
